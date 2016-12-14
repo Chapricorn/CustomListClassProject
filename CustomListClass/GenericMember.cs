@@ -1,60 +1,127 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CustomListClass;
 
+
 namespace CustomListClass
 {
-    public class GenericMember/* : IEnumerable*/
+    public class GenericMember<T> : IEnumerable
     {
-        //private string[] membersArray;
-        //private List<string> membersList;
+        T[] elements;
 
-
-        public string familyMembers;
-        public string memberName;
-        public double memberAge;
-        public double getNumber;
-
-        double[] membersAge = { 33, 15, 12, 10, 9 };
-      
         public GenericMember()
         {
-
+            elements = new T[0];
         }
-        //public FamilyMembers()
+
+        //public int[] membersArray;
+        public object[] membersArray { get; set; }
+        public int age;
+       
+        public bool value;
+
+
+        public int Capacity { get; set; }
+
+        //public GenericMember()
         //{
-        //    Console.Write(" Members of this Family ");
+        //    membersArray = new T[Capacity];
         //}
-        public string MemberName { get; set; }
 
-        public int MemberAge { get; set; }
-
-        public string MemberHobby { get; set; }
-
-        public override string ToString()
+        public GenericMember(int age)
         {
-            return " Name: " + MemberName + " Age: " + MemberAge + " Hobby: " + MemberHobby;
-        }
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            GenericMember objAsMember = obj as GenericMember;
-            if (objAsMember == null) return false;
-            else return Equals(objAsMember);
-        }
-        public int GetNumber()
-        {
-            return MemberAge;
-        }
-        public bool Equals(GenericMember other)
-        {
-            if (other == null) return false;
-            return (this.MemberAge.Equals(other.MemberAge));
+            this.age = age;
         }
 
+
+        //public List<Member> memberList { get; set;}
+
+
+        public void AddItem(object[] myArray)
+        {
+            Capacity ++;
+            membersArray = myArray;
+        }
+
+        //public void InsertMemberList(List<Member> memberListItem)
+        //{
+        //    memberList = memberListItem;
+        //}
+
+        public bool Remove(T toRemoveItem)
+        {
+            if (elements.Count() > 0)
+            {
+                T[] newElements = new T[Count() - 1];
+                int count = 0;
+                bool found = false;
+                int foundIndex = 0;
+                foreach (T element in elements)
+                {
+                    if (element.Equals(toRemoveItem))
+                    {
+                        found = true;
+                        foundIndex = count;
+                    }
+                    count++;
+                }
+                if (found)
+                {
+                    count = 0;
+                    int newCount = 0;
+                    foreach (T element in elements)
+                    {
+                        if (count != foundIndex)
+                        {
+                            newElements[newCount] = element;
+                            count++;
+                            newCount++;
+                        }
+                        else
+                        {
+                            count++;
+                        }
+                    }
+                    elements = newElements;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
+        //public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+        //{
+
+        //}
+        //public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
+        //{
+
+        //}
+        //public IEnumerator<T> GetEnumerator()
+        //{
+
+        //}
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+
+        //}
+
+        public void Print()
+        {
+            Console.WriteLine(value);
+        }
+
+    }
+
 
