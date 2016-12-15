@@ -18,11 +18,11 @@ namespace CustomListTest
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
-            list1.AddElement("Chue");
-            list1.AddElement("Evee");
-            list1.AddElement("Jessienee");
-            list1.AddElement("Chloe");
-            list1.AddElement("Yosmine");
+            list1.AddItem("Chue");
+            list1.AddItem("Evee");
+            list1.AddItem("Jessienee");
+            list1.AddItem("Chloe");
+            list1.AddItem("Yosmine");
             int actual = list1.Count();
 
             //Assert
@@ -37,11 +37,11 @@ namespace CustomListTest
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
-            list1.AddElement("Chue");
-            list1.AddElement("Evee");
-            list1.AddElement("Jessienee");
-            list1.AddElement("Chloe");
-            list1.AddElement("Yosmine");
+            list1.AddItem("Chue");
+            list1.AddItem("Evee");
+            list1.AddItem("Jessienee");
+            list1.AddItem("Chloe");
+            list1.AddItem("Yosmine");
             list1.RemoveItem("Evee");
             int actual = list1.Count();
 
@@ -58,11 +58,11 @@ namespace CustomListTest
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
-            list1.AddElement("1");
-            list1.AddElement("2");
-            list1.AddElement("3");
-            list1.AddElement("4");
-            list1.AddElement("5");
+            list1.AddItem("1");
+            list1.AddItem("2");
+            list1.AddItem("3");
+            list1.AddItem("4");
+            list1.AddItem("5");
             string actual = list1.ToString();
 
             //Assert
@@ -78,11 +78,11 @@ namespace CustomListTest
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
-            list1.AddElement("1");
-            list1.AddElement("2");
-            list1.AddElement("3");
-            list1.AddElement("4");
-            list1.AddElement("5");
+            list1.AddItem("1");
+            list1.AddItem("2");
+            list1.AddItem("3");
+            list1.AddItem("4");
+            list1.AddItem("5");
             Boolean actual = false;
 
             if (list1.Count() > 0)
@@ -103,11 +103,11 @@ namespace CustomListTest
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
-            list1.AddElement("1");
-            list1.AddElement("2");
-            list1.AddElement("3");
-            list1.AddElement("4");
-            list1.AddElement("5");
+            list1.AddItem("1");
+            list1.AddItem("2");
+            list1.AddItem("3");
+            list1.AddItem("4");
+            list1.AddItem("5");
             Boolean actual = true;
 
             if (list1.Count() > 0)
@@ -152,7 +152,55 @@ namespace CustomListTest
                 // assert
                 Assert.AreEqual(expected, actual);
             }
-            
+
+            [TestMethod]
+            public void Test_AddMemberNames()
+            {
+                //arrange
+                string expected = "Chue Jessienee";
+
+                // Act
+                Member member = new Member();
+                member.name = "Chue Jessienee";
+                string actual = member.name;
+
+                // assert
+                Assert.AreEqual(expected, actual);
+            }
+            [TestMethod]
+            public void Test_AddNumberAndMemberName()
+            {
+                //arrange
+                string expected = "1 Chue";
+
+                // Act
+                Member member = new Member();
+                member.name = "1 Chue";
+                string actual = member.name;
+
+                // assert
+                Assert.AreEqual(expected, actual);
+            }
+
+            [TestMethod]
+            public void Test_SubtractMember()
+            {
+                // Arrange
+                string expected = "1245";
+
+                // Act
+                GenericMember<string> list1 = new GenericMember<string>();
+                list1.AddItem("1");
+                list1.AddItem("2");
+                list1.AddItem("4");
+                list1.AddItem("5");
+                string actual = list1.ToString();
+
+                //Assert
+                Assert.AreEqual(expected, actual);
+            }
+
         }
+
     }
 }

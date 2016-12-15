@@ -27,20 +27,20 @@ namespace CustomListClass
 
         public T[] myArray { get; private set; }
 
-        //public int MyArray()
-        //{
+        public int MyArray()
+        {
 
-        //    int result = 0;
-        //    if (myArray.Length > 5)
-        //    {
-        //        result = 5;
-        //    }
-        //    else if (myArray.Length < 0)
-        //    {
-        //        result = 0;
-        //    }
-        //    return result;
-        //}
+            int result = 0;
+            if (myArray.Length > 5)
+            {
+                result = 5;
+            }
+            else if (myArray.Length < 0)
+            {
+                result = 0;
+            }
+            return result;
+        }
 
         public T[] memberArrays { get; set; }
         public int age;
@@ -64,10 +64,10 @@ namespace CustomListClass
             }
         }
 
-        //public GenericMember(int age)
-        //{
-        //    this.age = age;
-        //}
+        public GenericMember(int age)
+        {
+            this.age = age;
+        }
 
 
         public void AddItem()
@@ -86,7 +86,7 @@ namespace CustomListClass
         }
 
 
-        public void AddElement(T element)
+        public void AddItem(T element)
         {
             int count = 0;
             T[] newMemberArrays = new T[Count() + 1];
@@ -206,6 +206,8 @@ namespace CustomListClass
             return convertedString;
         }
      
+
+
     }
 }
 
