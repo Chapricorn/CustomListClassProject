@@ -9,42 +9,40 @@ namespace CustomListTest
     public class GenericMemberTest
     {
 
-        /// <summary>
-        /// This Test Case is used for testing the AddElement() method
-        /// </summary>
+     
         [TestMethod]
         public void Test_AddElement()
         {
             // Arrange
-            int expected = 3;
+            int expected = 5;
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
-            list1.AddElement("string 1");
-            list1.AddElement("string 2");
-            list1.AddElement("string 3");
+            list1.AddElement("Chue");
+            list1.AddElement("Evee");
+            list1.AddElement("Jessienee");
+            list1.AddElement("Chloe");
+            list1.AddElement("Yosmine");
             int actual = list1.Count();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
-
-        /// <summary>
-        ///  This Test Case is used for testing the AddElement() method
-        /// </summary>
         [TestMethod]
         public void Test_RemoveItem()
         {
             // Arrange
-            int expected = 2;
+            int expected = 4;
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
-            list1.AddElement("string 1");
-            list1.AddElement("string 2");
-            list1.AddElement("string 3");
-            list1.RemoveItem("string 2");
+            list1.AddElement("Chue");
+            list1.AddElement("Evee");
+            list1.AddElement("Jessienee");
+            list1.AddElement("Chloe");
+            list1.AddElement("Yosmine");
+            list1.RemoveItem("Evee");
             int actual = list1.Count();
 
             //Assert
@@ -52,25 +50,25 @@ namespace CustomListTest
         }
 
 
-        /// <summary>
-        ///  This Test Case is used for testing the ToString() method
-        /// </summary>
         [TestMethod]
         public void Test_ToString()
         {
             // Arrange
-            string expected = "123";
+            string expected = "12345";
 
             // Act
             GenericMember<string> list1 = new GenericMember<string>();
             list1.AddElement("1");
             list1.AddElement("2");
             list1.AddElement("3");
+            list1.AddElement("4");
+            list1.AddElement("5");
             string actual = list1.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
 
         [TestMethod]
         public void Test_CheckForEmptyArray()
@@ -83,9 +81,10 @@ namespace CustomListTest
             list1.AddElement("1");
             list1.AddElement("2");
             list1.AddElement("3");
+            list1.AddElement("4");
+            list1.AddElement("5");
             Boolean actual = false;
 
-            // if there are elements in the list, let actual equal to true
             if (list1.Count() > 0)
             {
                 actual = true;
@@ -94,6 +93,32 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void Test_CheckCount()
+        {
+            // Arrange
+            Boolean expected = false;
+
+            // Act
+            GenericMember<string> list1 = new GenericMember<string>();
+            list1.AddElement("1");
+            list1.AddElement("2");
+            list1.AddElement("3");
+            list1.AddElement("4");
+            list1.AddElement("5");
+            Boolean actual = true;
+
+            if (list1.Count() > 0)
+            {
+                actual = false;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
 
         [TestClass]
         public class MemberTest
@@ -127,6 +152,7 @@ namespace CustomListTest
                 // assert
                 Assert.AreEqual(expected, actual);
             }
+            
         }
     }
 }

@@ -11,17 +11,12 @@ namespace CustomListClass
 {
     public class GenericMember<T> : IEnumerable<T>
     {
-
-        // Declare variables
         T[] MemberArrays;
         int i;
         public bool remove;
         public string toString;
 
 
-        /// <summary>
-        /// constructor
-        /// </summary>
         public GenericMember()
         {
             MemberArrays = new T[0];
@@ -32,20 +27,20 @@ namespace CustomListClass
 
         public T[] myArray { get; private set; }
 
-        public int MyArray()
-        {
-            //myArray = new T[Capacity];
-            int result = 0;
-            if (myArray.Length > 5)
-            {
-                result = 5;
-            }
-            else if (myArray.Length < 0)
-            {
-                result = 0;
-            }
-            return result;
-        }
+        //public int MyArray()
+        //{
+
+        //    int result = 0;
+        //    if (myArray.Length > 5)
+        //    {
+        //        result = 5;
+        //    }
+        //    else if (myArray.Length < 0)
+        //    {
+        //        result = 0;
+        //    }
+        //    return result;
+        //}
 
         public T[] memberArrays { get; set; }
         public int age;
@@ -69,21 +64,16 @@ namespace CustomListClass
             }
         }
 
-
-        public GenericMember(int age)
-        {
-            this.age = age;
-        }
-
-
-        //public List<Member> memberList { get; set;}
+        //public GenericMember(int age)
+        //{
+        //    this.age = age;
+        //}
 
 
         public void AddItem()
         {
-            int count = 0;
+            int count = 5;
             Capacity++;
-            //MemberArrays = newMemberArrays;
 
             T[] newMemberArrays = new T[MemberArrays.Length + 1];
             for (i = 0; i < MemberArrays.Length; i++)
@@ -99,22 +89,24 @@ namespace CustomListClass
         public void AddElement(T element)
         {
             int count = 0;
-            T[] newElements = new T[Count() + 1];
+            T[] newMemberArrays = new T[Count() + 1];
             if (MemberArrays != null)
             {
                 foreach (T elem in MemberArrays)
                 {
-                    newElements[count] = elem;
+                    newMemberArrays[count] = elem;
                     count++;
                 }
-                newElements[count] = element;
+                newMemberArrays[count] = element;
             }
             else
             {
-                newElements[0] = element;
+                newMemberArrays[0] = element;
             }
-            MemberArrays = newElements;
+            MemberArrays = newMemberArrays;
         }
+
+
         //public void InsertMemberList(List<Member> T memberArrays)
         //{
         //    memberList = memberListItem;
@@ -162,9 +154,7 @@ namespace CustomListClass
         }
 
 
-
-
-        public static GenericMember<T> operator - (GenericMember<T> myArray, GenericMember<T> myMember)
+        public static GenericMember<T> operator -(GenericMember<T> myArray, GenericMember<T> myMember)
         {
             foreach (T member in myMember)
             {
@@ -206,10 +196,6 @@ namespace CustomListClass
             Console.WriteLine(value);
         }
 
-        /// <summary>
-        /// Convert MemberArrays to a String
-        /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             string convertedString = "";
@@ -219,6 +205,7 @@ namespace CustomListClass
             }
             return convertedString;
         }
+     
     }
 }
 
