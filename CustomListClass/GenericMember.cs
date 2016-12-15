@@ -9,28 +9,66 @@ using CustomListClass;
 
 namespace CustomListClass
 {
-    public class GenericMember<T> : IEnumerable
+    public class GenericMember<T> : IEnumerable<T>
     {
-        T[] elements;
 
+        // Declare variables
+        T[] MemberArrays;
+        int i;
+        public bool remove;
+        public string toString;
+
+
+        /// <summary>
+        /// constructor
+        /// </summary>
         public GenericMember()
         {
-            elements = new T[0];
+            MemberArrays = new T[0];
+            remove = true;
         }
-
-        //public int[] membersArray;
-        public object[] membersArray { get; set; }
-        public int age;
-       
-        public bool value;
-
-
         public int Capacity { get; set; }
 
-        //public GenericMember()
-        //{
-        //    membersArray = new T[Capacity];
-        //}
+
+        public T[] myArray { get; private set; }
+
+        public int MyArray()
+        {
+            //myArray = new T[Capacity];
+            int result = 0;
+            if (myArray.Length > 5)
+            {
+                result = 5;
+            }
+            else if (myArray.Length < 0)
+            {
+                result = 0;
+            }
+            return result;
+        }
+
+        public T[] memberArrays { get; set; }
+        public int age;
+
+        public bool value;
+
+        public int Count()
+        {
+            int count = 0;
+            if (MemberArrays != null)
+            {
+                foreach (object memArray in MemberArrays)
+                {
+                    count++;
+                }
+                return count;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
 
         public GenericMember(int age)
         {
@@ -41,87 +79,147 @@ namespace CustomListClass
         //public List<Member> memberList { get; set;}
 
 
-        public void AddItem(object[] myArray)
+        public void AddItem()
         {
-            Capacity ++;
-            membersArray = myArray;
+            int count = 0;
+            Capacity++;
+            //MemberArrays = newMemberArrays;
+
+            T[] newMemberArrays = new T[MemberArrays.Length + 1];
+            for (i = 0; i < MemberArrays.Length; i++)
+            {
+                newMemberArrays[i] = MemberArrays[i];
+            }
+            T myNewArray = default(T);
+            newMemberArrays[MemberArrays.Length] = myNewArray;
+            MemberArrays = newMemberArrays;
         }
 
-        //public void InsertMemberList(List<Member> memberListItem)
-        //{
-        //    memberList = memberListItem;
-        //}
 
-        public bool Remove(T toRemoveItem)
+        public void AddElement(T element)
         {
-            if (elements.Count() > 0)
+            int count = 0;
+            T[] newElements = new T[Count() + 1];
+            if (MemberArrays != null)
             {
-                T[] newElements = new T[Count() - 1];
-                int count = 0;
-                bool found = false;
-                int foundIndex = 0;
-                foreach (T element in elements)
+                foreach (T elem in MemberArrays)
                 {
-                    if (element.Equals(toRemoveItem))
-                    {
-                        found = true;
-                        foundIndex = count;
-                    }
+                    newElements[count] = elem;
                     count++;
                 }
-                if (found)
+                newElements[count] = element;
+            }
+            else
+            {
+                newElements[0] = element;
+            }
+            MemberArrays = newElements;
+        }
+        //public void InsertMemberList(List<Member> T memberArrays)
+        //{
+        //    memberList = memberListItem;
+
+        //}
+
+        public void RemoveItem(T removedItem)
+        {
+            T[] removeFromList = new T[MemberArrays.Length - 1];
+            for (i = 0; i <= removeFromList.Length; i++)
+            {
+                if (remove)
                 {
-                    count = 0;
-                    int newCount = 0;
-                    foreach (T element in elements)
+                    if (MemberArrays[i].Equals(removedItem))
                     {
-                        if (count != foundIndex)
-                        {
-                            newElements[newCount] = element;
-                            count++;
-                            newCount++;
-                        }
-                        else
-                        {
-                            count++;
-                        }
+                        remove = false;
                     }
-                    elements = newElements;
-                    return true;
+                    else
+                    {
+                        removeFromList[i] = MemberArrays[i];
+                    }
                 }
+
                 else
                 {
-                    return false;
+                    removeFromList[i - 1] = MemberArrays[i];
+                }
+
+            }
+            MemberArrays = removeFromList;
+        }
+
+        public static GenericMember<T> operator +(GenericMember<T> myArray, GenericMember<T> myMember)
+        {
+            GenericMember<T> combinedGenericMember = new GenericMember<T>();
+            foreach (T member in myArray.MemberArrays)
+            {
+                combinedGenericMember.AddItem();
+            }
+            foreach (T member in myMember.MemberArrays)
+            {
+                combinedGenericMember.AddItem();
+            }
+            return combinedGenericMember;
+        }
+
+
+
+
+        public static GenericMember<T> operator - (GenericMember<T> myArray, GenericMember<T> myMember)
+        {
+            foreach (T member in myMember)
+            {
+                myArray.RemoveItem(member);
+            }
+            return myArray;
+        }
+        public void Display()
+        {
+            if (MemberArrays != null)
+            {
+                foreach (object member in MemberArrays)
+                {
+                    Console.WriteLine(member);
                 }
             }
             else
             {
-                return false;
+                Console.WriteLine("List is Null");
             }
         }
-    }
-        //public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
-        //{
 
-        //}
-        //public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
-        //{
+        public IEnumerator<T> GetEnumerator()
+        {
 
-        //}
-        //public IEnumerator<T> GetEnumerator()
-        //{
+            for (i = 0; i < MemberArrays.Length; i++)
+            {
+                yield return MemberArrays[i];
 
-        //}
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-
-        //}
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         public void Print()
         {
             Console.WriteLine(value);
         }
 
+        /// <summary>
+        /// Convert MemberArrays to a String
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string convertedString = "";
+            foreach (T element in MemberArrays)
+            {
+                convertedString += element;
+            }
+            return convertedString;
+        }
     }
+}
 
 

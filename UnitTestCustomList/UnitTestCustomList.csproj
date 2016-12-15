@@ -53,7 +53,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GenericMemberTest.cs" />
-    <Compile Include="MemberTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

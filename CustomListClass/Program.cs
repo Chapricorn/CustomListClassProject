@@ -10,112 +10,68 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-            List<int> list = new List<int>();
-            list.Add(1);
-            //GenericMember<int> customList = new GenericMember<int>();
 
+            // Add element to the list
 
-            GenericMember customList = new GenericMember();
+            GenericMember<string> mylist = new GenericMember<string>();
+            mylist.AddElement("string 1");
+            mylist.AddElement("string 2");
+            mylist.AddElement("string 3");
+            int actual = mylist.Count();
 
-         object[] myArray = new object[5];
-            myArray[0] = " Chue ";
-            myArray[1] = " Evee ";
-            myArray[2] = " Jessienee ";
-            myArray[3] = " Chloe ";
-            myArray[4] = " Yosmine ";
-
-            //myArray[4] = " Chue ";
-
-
-
-            //customList.membersArray = myArray;
-            customList.AddItem(myArray);
-
-            //(10 points): As a developer, I want the custom list class to be iterable.
-            for (int i = 0; i < customList.membersArray.Length; i++)
+            Console.WriteLine(" These are the elements from AddElement List: ");
+            foreach (string element in mylist)
             {
-                Console.WriteLine(customList.membersArray[i]);
+                Console.WriteLine(element);
             }
             Console.ReadLine();
 
-            // Add Age to the list
-            customList.age = 10;
+            
+            // Add "A B and C" to the List
+            GenericMember<string> removeList = new GenericMember<string>();
+            removeList.AddElement("A");
+            removeList.AddElement("B");
+            removeList.AddElement("C");
 
-            // Create a list of members.
-            List<Member> members = new List<Member>();
-            Member myMember = new Member();
-            myMember.name = "Joe";
-            myMember.age = 30;
-            members.Add(myMember);
- 
+            Console.WriteLine(" These are the element before removed one element from  List: ");
+            foreach (string element in removeList)
+            {
+                Console.WriteLine(element);
+            }
+            Console.ReadLine();
 
+            // Remove "B" from the List
+            removeList.RemoveItem("B");
 
-            //members.Add(" Chue "        , MemberAge = 33 );
-            //members.Add(" Evee "        , MemberAge = 15 );
-            //members.Add(" Jessienee "   , MemberAge = 12 );
-            //members.Add(" Chloe "       , MemberAge = 10 );
-            //members.Add(" Yosmine "     , MemberAge = 9  );
+            Console.WriteLine(" These are the element after removed B element from  List: ");
+            foreach (string element in removeList)
+            {
+                Console.WriteLine(element);
+            }
+            Console.ReadLine();
 
-
-
-            //Console.WriteLine(" All the Members in this Family ");
-            //Console.WriteLine(" \n ");
-            //foreach (GenericMember aMember in members)
-            //{
-            //    Console.WriteLine(aMember);
-            //}
-
-            //Console.WriteLine("\n Member Number [3] is: {0}", members[3]);
-            //Console.WriteLine("\n First Member Age (33): {0}",
-            //members.Contains(new GenericMember { MemberName = " Chue ", MemberAge = 33 }));
-
-            //// Insert a new item at position 2.
-            //Console.WriteLine("\n Add Member Number: (2) to List. ");
-            //members.Insert(2, new GenericMember() { MemberName = " Evee ", MemberAge = 15 });
-
-
-
-            //foreach (GenericMember aMember in members)
-            //{
-            //    Console.WriteLine(aMember);
-            //}
+            // Convert Array Name removeList to a String
+            GenericMember<string> list1 = new GenericMember<string>();
+            list1.AddElement("1");
+            list1.AddElement("2");
+            list1.AddElement("3");
+            Console.WriteLine(" These are the element in the list before convert to a String : ");
+            foreach (string element in list1)
+            {
+                Console.WriteLine(element);
+            }
+            Console.ReadLine();
 
 
-
-            //Console.WriteLine("\n Remove Member with Age: (9)");
-
-
-            //members.Remove(new GenericMember() { MemberAge = 9, MemberName = " Yosmine " });
-
-            //Console.WriteLine();
-            //foreach (GenericMember aMember in members)
-            //{
-            //    Console.WriteLine(aMember);
-            //}
-            //Console.WriteLine("\n Remove Member Number: (3)");
-
-            //members.RemoveAt(3);
-
-            //Console.WriteLine();
-            //foreach (GenericMember aMember in members)
-            //{
-            //    Console.WriteLine(aMember);
-            //}
-            //Console.ReadKey();
-
-            //int age = 33;
-
-            //GenericMember<int> ageOfMember = new GenericMember<int>(age);
-            //Console.WriteLine(" Testing GenericMember Class with Int");
-            //ageOfMember.Print();
-            //Console.ReadKey();
+            // Convert list1 to a String
+            string myString = list1.ToString();
 
 
-            //GenericMember<string> nameOfMember = new GenericMember<string>(" Chue ");
-            //Console.WriteLine(" Testing GenericMember Class with String");
-            //nameOfMember.Print();
-            //ageOfMember.Print();
-            //Console.ReadKey();
+            Console.WriteLine(" This is the result from ToString() Method: ");
+           
+            Console.WriteLine(myString);
+        
+
 
         }
     }
